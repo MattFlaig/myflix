@@ -6,12 +6,13 @@ class InvitationsController < ApplicationController
   end
 
   def create
-  	invitation = Invitation.new(invitation_params.merge!(inviter_id: current_user.id))
-  	AppMailer.send_invitation_email(invitation).deliver
-  	if invitation.save
+  	@invitation = Invitation.new(invitation_params.merge!(inviter_id: current_user.id))
+  	if @invitation.save
+  		AppMailer.send_invitation_email(@invitation).deliver
   	  flash[:notice] = "A new invitation was sent!"
   	  redirect_to new_invitation_path
   	else
+  		flash[:danger] = "There is something wrong with your input!"
   		render 'new'
   	end
   end

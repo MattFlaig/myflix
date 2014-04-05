@@ -20,6 +20,9 @@ describe InvitationsController do
     end
 
     context "with valid input" do
+      
+      after { ActionMailer::Base.deliveries.clear }
+
       it "creates an invitation" do
         set_current_user
         post :create, invitation: {recipient_name: "Joe Smith", recipient_email: "joe@example.com", message: "Hey check this out"}
@@ -43,6 +46,38 @@ describe InvitationsController do
         post :create, invitation: {recipient_name: "Joe Smith", recipient_email: "joe@example.com", message: "Hey check this out"}
         expect(flash[:notice]).not_to be_blank
       end
+    end
+
+    context "with invalid input" do
+      it "does not create the invitation" do
+        set_current_user
+        post :create, invitation: { recipient_email: "joe@example.com", message: "Hey check this out"}
+        expect(Invitation.count).to eq(0)
+      end
+
+      it "renders the new template" do
+        set_current_user
+        post :create, invitation: { recipient_email: "joe@example.com", message: "Hey check this out"}
+        expect(response).to render_template :new
+      end
+
+      it "does not send out an email" do
+        set_current_user
+        post :create, invitation: { recipient_email: "joe@example.com", message: "Hey check this out"}
+        expect(ActionMailer::Base.deliveries).to be_empty
+      end   
+      it "sets an error message" do
+        set_current_user
+        post :create, invitation: { recipient_email: "joe@example.com", message: "Hey check this out"}
+        expect(flash[:danger]).to be_present
+      end
+
+      it "sets the invitation variable" do
+        set_current_user
+        post :create, invitation: { recipient_email: "joe@example.com", message: "Hey check this out"}
+        expect(assigns(:invitation)).to be_present
+      end
+
     end
   end
 end
