@@ -18,11 +18,10 @@ describe InvitationsController do
     it_behaves_like "requires sign in" do
       let(:action) { post :create }
     end
+    after { ActionMailer::Base.deliveries.clear }
 
     context "with valid input" do
       
-      after { ActionMailer::Base.deliveries.clear }
-
       it "creates an invitation" do
         set_current_user
         post :create, invitation: {recipient_name: "Joe Smith", recipient_email: "joe@example.com", message: "Hey check this out"}
