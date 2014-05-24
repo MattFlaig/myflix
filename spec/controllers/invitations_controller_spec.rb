@@ -1,4 +1,6 @@
 require 'spec_helper'
+require 'sidekiq/testing'
+Sidekiq::Testing.inline!
 
 describe InvitationsController do
   describe "GET new" do

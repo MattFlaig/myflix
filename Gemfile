@@ -3,13 +3,14 @@ ruby '2.0.0'
 
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
-gem 'bcrypt-ruby'
+gem 'bcrypt'
 gem 'coffee-rails'
-gem 'rails'
+gem 'rails', '~> 4.0.0'
 gem 'haml-rails'
-gem 'sass-rails'
+gem 'sass-rails', '~> 4.0.2'
 gem 'uglifier'
 gem 'jquery-rails'
+gem 'sidekiq'
 
 
 group :development do
