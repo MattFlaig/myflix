@@ -5,9 +5,9 @@ Sidekiq::Testing.inline!
 describe ForgotPasswordsController do
   describe "POST create" do
     context "with blank input" do
-    	it "redirects to forgot password pasge" do
-	      post :create, email: ' '
-	      expect(response).to redirect_to forgot_password_path
+      it "redirects to forgot password pasge" do
+        post :create, email: ' '
+        expect(response).to redirect_to forgot_password_path
       end
       it "shows an error message" do
         post :create, email: ' '
@@ -34,7 +34,7 @@ describe ForgotPasswordsController do
         expect(response).to redirect_to forgot_password_path
       end
       it "shows an error message" do
-      	post :create, email: "none@example.com"
+        post :create, email: "none@example.com"
         expect(flash[:danger]).to eq("There is no user with that email in the system")
       end
 

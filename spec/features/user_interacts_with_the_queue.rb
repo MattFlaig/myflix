@@ -2,10 +2,10 @@ require 'spec_helper'
 
 feature "User interacts with the queue" do
   scenario "user adds and reorders videos in the queue" do
-  	thriller = Fabricate(:category)
-  	lost = Fabricate(:video, title: "Lost Highway", category: thriller)
-  	inc = Fabricate(:video, title: "Inception", category: thriller)
-  	drive = Fabricate(:video, title: "Drive", category: thriller)
+    thriller = Fabricate(:category)
+    lost = Fabricate(:video, title: "Lost Highway", category: thriller)
+    inc = Fabricate(:video, title: "Inception", category: thriller)
+    drive = Fabricate(:video, title: "Drive", category: thriller)
 
     sign_in
 

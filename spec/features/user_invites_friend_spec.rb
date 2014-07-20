@@ -2,8 +2,8 @@ require 'spec_helper'
 
 feature "User Invites Friend" do 
   scenario 'User successfully invites friend and invitation is accepted' do 
-  	amanda = Fabricate(:user)
-  	sign_in(amanda)
+    amanda = Fabricate(:user)
+    sign_in(amanda)
 
     invite_a_friend
     friend_accepts_invitation
@@ -16,16 +16,16 @@ feature "User Invites Friend" do
   end
 
   def invite_a_friend
-	  visit new_invitation_path
-	  fill_in "Friend's name", with: "John Doe"
-	  fill_in "Friend's Email Address", with: "john@example.com"
-	  fill_in "Message", with: "Hello please join this site"
-	  click_button "Send Invitation"
-	  sign_out
-	end
+    visit new_invitation_path
+    fill_in "Friend's name", with: "John Doe"
+    fill_in "Friend's Email Address", with: "john@example.com"
+    fill_in "Message", with: "Hello please join this site"
+    click_button "Send Invitation"
+    sign_out
+  end
 
-	def friend_accepts_invitation
-		open_email "john@example.com"
+  def friend_accepts_invitation
+    open_email "john@example.com"
     current_email.click_link "Accept this invitation"
 
     fill_in "Password", with: "password"
@@ -40,13 +40,13 @@ feature "User Invites Friend" do
   end
 
   def friend_should_follow(user)
-  	click_link "People"
+    click_link "People"
     expect(page).to have_content user.full_name
     sign_out
   end
 
   def inviter_should_follow_friend(user)
-  	sign_in(user)
+    sign_in(user)
     click_link "People"
     expect(page).to have_content "John Doe"
   end

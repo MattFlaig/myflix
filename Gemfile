@@ -11,6 +11,10 @@ gem 'sass-rails', '~> 4.0.2'
 gem 'uglifier'
 gem 'jquery-rails'
 gem 'sidekiq'
+gem 'figaro'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'stripe'
 
 
 group :development do
@@ -32,13 +36,13 @@ group :production do
 end
 
 group :test, :development do
-	gem 'rspec-rails', '~> 2.0'
+  gem 'rspec-rails', '~> 2.0'
   gem 'fabrication'
   gem 'faker'
 end
 
 group :test do
-	gem 'shoulda-matchers'
+  gem 'shoulda-matchers'
   gem 'capybara'
   gem 'launchy'
   gem 'capybara-email'

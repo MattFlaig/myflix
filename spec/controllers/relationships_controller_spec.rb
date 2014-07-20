@@ -3,7 +3,7 @@ require 'spec_helper'
 describe RelationshipsController do
   describe "GET index" do
     it "sets @relationships to the current user's following relationships" do
-  	  amanda = Fabricate(:user)
+      amanda = Fabricate(:user)
       set_current_user(amanda)
       bob = Fabricate(:user)
       relationship = Fabricate(:relationship, follower: amanda, leader: bob)
@@ -17,7 +17,7 @@ describe RelationshipsController do
   end
 
   describe "DELETE destroy" do
-  	it_behaves_like "requires sign in" do
+    it_behaves_like "requires sign in" do
       let(:action) {delete :destroy, id:3}
     end
 
