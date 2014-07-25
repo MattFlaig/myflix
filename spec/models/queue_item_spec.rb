@@ -7,15 +7,15 @@ describe QueueItem do
 
   describe "#video_title" do
     it "returns the title of the associated video" do
-    	video = Fabricate(:video, title: 'Inception')
-    	queue_item = Fabricate(:queue_item, video: video)
-    	expect(queue_item.video_title).to eq('Inception')
+      video = Fabricate(:video, title: 'Inception')
+      queue_item = Fabricate(:queue_item, video: video)
+      expect(queue_item.video_title).to eq('Inception')
     end
   end
 
   describe "#rating" do
-  	it "returns the rating from the review when there is a review" do
-  	  video = Fabricate(:video)
+    it "returns the rating from the review when there is a review" do
+      video = Fabricate(:video)
       user = Fabricate(:user)
       review = Fabricate(:review, user: user, video: video, rating: 4)
       queue_item = Fabricate(:queue_item, user: user, video: video)

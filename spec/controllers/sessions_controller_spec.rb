@@ -36,8 +36,8 @@ describe SessionsController do
     end
 
     context "with invalid input" do
-    	before do
-    	  amanda = Fabricate(:user)
+      before do
+        amanda = Fabricate(:user)
         post :create, email: amanda.email
       end
 
@@ -56,8 +56,8 @@ describe SessionsController do
   end
 
   describe "GET destroy" do
-  	before do
-  	  session[:user_id] = Fabricate(:user).id
+    before do
+      session[:user_id] = Fabricate(:user).id
       get :destroy
     end
 
