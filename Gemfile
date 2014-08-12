@@ -25,6 +25,7 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem "letter_opener"
+  gem 'rb-readline', '~> 0.4.2'
 end
 
 group :production do
