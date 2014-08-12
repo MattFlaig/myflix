@@ -6,9 +6,9 @@
       %li= link_to "Videos", videos_path
       %li= link_to "My Queue", my_queue_path
       %li= link_to "People", people_path
-    = form_tag search_videos_path, class: "col-md-5 navbar-form", role: "search" do
+    = form_tag search_videos_path, method:'get', class: "col-md-5 navbar-form" do
       %input.search-query(name="search_term" type="text" placeholder="Search for videos here")
-      %button.btn-xs.btn(type="submit") Search
+      %input.btn-xs.btn(type="submit" value="search")
     #user_links.pull-right
       %ul
         %li.dropdown
