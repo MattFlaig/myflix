@@ -1,3 +1,6 @@
+require 'carrierwave'
+require 'fog'
+
 CarrierWave.configure do |config|
   if Rails.env.staging? || Rails.env.production?
     config.storage = :fog
