@@ -13,6 +13,7 @@ gem 'jquery-rails'
 gem 'sidekiq'
 gem 'figaro'
 gem 'carrierwave'
+gem 'fog'
 gem 'mini_magick'
 gem 'stripe'
 
@@ -29,7 +30,6 @@ group :development do
 end
 
 group :production do
-  gem 'fog'
   gem 'pg'
   gem 'rails_12factor'
   gem 'unicorn'
