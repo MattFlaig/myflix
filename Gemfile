@@ -16,6 +16,7 @@ gem 'fog'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'stripe'
+gem 'font-awesome-sass'
 
 
 group :development do
