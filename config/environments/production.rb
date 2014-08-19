@@ -11,8 +11,6 @@ Myflix::Application.configure do
   config.assets.js_compressor = :uglifier
 
   config.assets.compile = true
-  #config.assets.precompile += ['static_pages.css']
-
   config.assets.digest = true
 
   config.i18n.fallbacks = true
