@@ -20,8 +20,6 @@ Myflix::Application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
-  
-  Rails.application.routes.default_url_options[:host] = '???'
 
   config.action_mailer.smtp_settings = {
     :port           => ENV['MAILGUN_SMTP_PORT'],
