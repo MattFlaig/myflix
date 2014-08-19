@@ -10,7 +10,7 @@ Myflix::Application.configure do
   config.assets.compress = true
   config.assets.js_compressor = :uglifier
 
-  config.assets.compile = true
+  config.assets.compile = false
   config.assets.digest = true
 
   config.i18n.fallbacks = true
@@ -21,6 +21,8 @@ Myflix::Application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   
+  Rails.application.routes.default_url_options[:host] = '???'
+
   config.action_mailer.smtp_settings = {
     :port           => ENV['MAILGUN_SMTP_PORT'],
     :address        => ENV['MAILGUN_SMTP_SERVER'],
