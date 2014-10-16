@@ -45,7 +45,7 @@ describe InvitationsController do
       it "sets a flash success message" do
         set_current_user
         post :create, invitation: {recipient_name: "Joe Smith", recipient_email: "joe@example.com", message: "Hey check this out"}
-        expect(flash[:notice]).not_to be_blank
+        expect(flash[:info]).not_to be_blank
       end
     end
 
