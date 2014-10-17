@@ -17,10 +17,10 @@
         %fieldset.credit_card
           %span.payment-errors
           .form-group
-            %label.col-sm-3.control-label(for='cc-number')Credit Card Number
+            %label.col-sm-3.control-label(for="credit-card-number")Credit Card Number
             .col-sm-3
-              %input.form-control#cc-number{"data-stripe" => "number", type: "text"}
-            %label.col-sm-3.control-label(for='security-code')Security Code
+              %input.form-control#credit-card-number{"data-stripe" => "number", type: "text"}
+            %label.col-sm-3.control-label(for="security-code")Security Code
             .col-sm-3
               %input.form-control#security-code{"data-stripe" => "cvc"}
           %br

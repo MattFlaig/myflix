@@ -12,6 +12,7 @@ describe UsersController do
     context "with valid input" do
 
       before do
+        StripeWrapper::Charge.stub(:create)
         post :create, user: Fabricate.attributes_for(:user)
       end
 
@@ -51,6 +52,7 @@ describe UsersController do
     context "with invalid input" do
 
       before do
+        StripeWrapper::Charge.stub(:create)
         post :create, user: {email: "mat@fat.com"}
       end
 
@@ -68,20 +70,22 @@ describe UsersController do
     end
 
     context "sending emails" do
-
       after { ActionMailer::Base.deliveries.clear }
 
       it "sends out email to the user with valid inputs" do
+        StripeWrapper::Charge.stub(:create)
         post :create, user: { email: "amanda@example.com", password: "password", full_name: "Amanda Sander"}
         expect(ActionMailer::Base.deliveries.last.to).to eq(['amanda@example.com'])
       end
 
       it "sends out email containing the user's name with valid inputs" do
+        StripeWrapper::Charge.stub(:create)
         post :create, user: { email: "amanda@example.com", password: "password", full_name: "Amanda Sander"}
         expect(ActionMailer::Base.deliveries.last.body).to include('Amanda Sander')
       end
 
       it "does not send out email with invalid inputs" do
+        StripeWrapper::Charge.stub(:create)
         post :create, user: { email: "amanda@example.com"}
         expect(ActionMailer::Base.deliveries).to be_empty
       end
