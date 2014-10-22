@@ -1,11 +1,13 @@
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<script type="text/javascript">Stripe.setPublishableKey("#{ENV['STRIPE_PUBLISHABLE_KEY']}");</script>
+%script{:src => "https://js.stripe.com/v2/", :type => "text/javascript"}
+
+:javascript
+  Stripe.setPublishableKey("#{ENV['STRIPE_PUBLISHABLE_KEY']}");
 
 = javascript_include_tag 'payment'
 
 %section.register.container
   .row
-    .col-sm-7.col-sm-offset-1
+    .span10.offset1
       = bootstrap_form_for @user, style: :horizontal, html: {id: "payment-form"} do |f|
         %header
           %h1 Register
@@ -16,25 +18,22 @@
           = hidden_field_tag :invitation_token, @invitation_token
         %fieldset.credit_card
           %span.payment-errors
-          .form-group
-            %label.col-sm-3.control-label(for="credit-card-number")Credit Card Number
-            .col-sm-3
-              %input.form-control#credit-card-number{"data-stripe" => "number", type: "text"}
-            %label.col-sm-3.control-label(for="security-code")Security Code
-            .col-sm-3
-              %input.form-control#security-code{"data-stripe" => "cvc"}
-          %br
-          %br
-          .form-group
-            %label.col-sm-3.control-label Expiration
-            .col-sm-3
+          .control-group
+            %label.control-label(for="credit-card-number")Credit Card Number
+            .controls
+              %input#credit-card-number.span3{"data-stripe" => "number", type: "text", class: 'form-control'}
+          .control-group
+            %label.control-label(for="security-code")Security Code
+            .controls
+              %input#security-code.span3{"data-stripe" => "cvc", type: "text", class: 'form-control'}
+          .control-group
+            %label.control-label Expiration
+            .controls
               = select_month(Date.today, {add_month_numbers: true}, class: 'form-control',"data-stripe" => "exp-month")
-            .col-sm-3
               = select_year(Date.today.year, {start_year: Date.today.year, end_year: Date.today.year + 4}, class: 'form-control',"data-stripe" => "exp-year")
-        %br
-        %fieldset.actions.control-group.col-sm-offset-1
+        %fieldset.actions.control-group
           .controls
-          %input(type="submit" value="Sign Up" class="btn btn-default")
+            %input(type="submit" value="Sign Up" class="btn")
 
 
 

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_user, only: [:show]
-
+  require 'pry'
   def new
     @user = User.new
   end
@@ -11,18 +11,27 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      handle_invitation
+    #binding.pry
+    if @user.valid?
       Stripe.api_key = ENV['STRIPE_SECRET_KEY']
-      StripeWrapper::Charge.create( 
+      charge = StripeWrapper::Charge.create( 
         :amount => 999, 
         :card => params[:stripeToken], 
         :description => "Sign Up Charge for #{@user.email}" 
       )
-      
-      AppMailer.send_welcome_email(@user).deliver
-      redirect_to sign_in_path
+      #binding.pry
+      if charge.successful?
+        @user.save
+        handle_invitation
+        AppMailer.send_welcome_email(@user).deliver
+        flash[:success] = "Thank you for registering with MyFlix. Please sign in now."
+        redirect_to sign_in_path
+      else
+        flash[:danger] = charge.error_message
+        render :new
+      end
     else
+      flash[:danger] = "Invalid user information. Please check the errors below."
       render :new
     end
   end
@@ -42,7 +51,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :full_name, :invitation_token)
+    params.require(:user).permit(:email, :password, :full_name, :invitation_token, :stripeToken)
   end
 
   def handle_invitation
