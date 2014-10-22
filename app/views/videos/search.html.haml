@@ -1,5 +1,5 @@
 %article.results
   - @results.each do |video|
-    .video.col-sm-2
+    .video.span2
       = link_to video, nil do
         %img(src="#{video.small_cover_url}")
