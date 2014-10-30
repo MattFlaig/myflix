@@ -17,6 +17,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'stripe'
 gem 'font-awesome-rails'
+gem 'draper'
 
 
 group :development do
