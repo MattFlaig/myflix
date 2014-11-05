@@ -19,7 +19,3 @@ test:
   timeout: 5000
 
 
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: quiet-chamber-2363
