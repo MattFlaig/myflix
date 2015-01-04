@@ -13,6 +13,7 @@ gem 'fog'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'stripe'
+gem 'stripe_event'
 gem 'draper'
 
 group :assets do
