@@ -8,24 +8,25 @@
 %section.register.container
   .row
     .span10.offset1
+      %fieldset
       = bootstrap_form_for @user, style: :horizontal, html: {id: "payment-form"} do |f|
         %header
           %h1 Register
-        %fieldset
-          = f.email_field :email, label: "Email Address"
-          = f.password_field :password
-          = f.text_field :full_name, label: "Full Name"
-          = hidden_field_tag :invitation_token, @invitation_token
+        = f.email_field :email, label: "Email Address"
+        = f.password_field :password
+        = f.text_field :full_name, label: "Full Name"
+        = hidden_field_tag :invitation_token, @invitation_token
+        %br
         %fieldset.credit_card
           %span.payment-errors
           .control-group
             %label.control-label(for="credit-card-number")Credit Card Number
             .controls
-              %input#credit-card-number.span3{"data-stripe" => "number", type: "text", class: 'form-control'}
+              %input.form-control#credit-card-number(data-stripe = "number" type = "text")
           .control-group
             %label.control-label(for="security-code")Security Code
             .controls
-              %input#security-code.span3{"data-stripe" => "cvc", type: "text", class: 'form-control'}
+              %input.form-control#security-code(data-stripe = "cvc" type = "text")
           .control-group
             %label.control-label Expiration
             .controls

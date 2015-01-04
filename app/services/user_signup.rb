@@ -1,7 +1,7 @@
 class UserSignup
   attr_reader :error_message
 
-	def initialize
+	def initialize(user)
     @user = user
 	end
 
@@ -12,6 +12,7 @@ class UserSignup
         :card => stripe_token 
       )
       if customer.successful?
+        @user.customer_token = customer.customer_token
         @user.save
         handle_invitation(invitation_token)
         AppMailer.send_welcome_email(@user).deliver
