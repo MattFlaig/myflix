@@ -1,13 +1,10 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-gem 'bootstrap-sass'
-gem 'bootstrap_form'
 gem 'bcrypt'
 gem 'coffee-rails'
 gem 'rails', '~> 4.0.0'
 gem 'haml-rails'
-gem 'sass-rails', '~> 4.0.2'
 gem 'uglifier'
 gem 'jquery-rails'
 gem 'sidekiq'
@@ -16,7 +13,15 @@ gem 'fog'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'stripe'
-gem 'font-awesome-rails'
+gem 'stripe_event'
+gem 'draper'
+
+group :assets do
+  gem 'bootstrap-sass', '~> 2.2.1.0'
+  gem 'bootstrap_form'
+  gem 'sass-rails', '~> 4.0.2'
+  gem 'font-awesome-rails'
+end
 
 
 group :development do
@@ -26,7 +31,6 @@ group :development do
   gem 'thin'
   gem "better_errors"
   gem "binding_of_caller"
-  gem "letter_opener"
   gem 'rb-readline', '~> 0.4.2'
 end
 
@@ -42,6 +46,7 @@ group :test, :development do
   gem 'rspec-rails', '~> 2.0'
   gem 'fabrication'
   gem 'faker'
+  gem "letter_opener"
 end
 
 group :test do
@@ -49,4 +54,8 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'capybara-email'
+  gem 'vcr'
+  gem 'webmock', '1.11.0'
+  gem 'selenium-webdriver', '2.39.0'
+  gem 'database_cleaner', '1.2.0'
 end
