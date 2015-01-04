@@ -1,5 +1,4 @@
 class UserSignup
- 
   attr_reader :error_message
 
 	def initialize
@@ -8,13 +7,11 @@ class UserSignup
 
   def sign_up(stripe_token, invitation_token)
     if @user.valid?
-      Stripe.api_key = ENV['STRIPE_SECRET_KEY']
-      charge = StripeWrapper::Charge.create( 
-        :amount => 999, 
-        :card => stripe_token, 
-        :description => "Sign Up Charge for #{@user.email}" 
+      customer = StripeWrapper::Customer.create( 
+        :user => @user,
+        :card => stripe_token 
       )
-      if charge.successful?
+      if customer.successful?
         @user.save
         handle_invitation(invitation_token)
         AppMailer.send_welcome_email(@user).deliver
@@ -22,7 +19,7 @@ class UserSignup
         self
       else
         @status = :failed
-        @error_message = charge.error_message
+        @error_message = customer.error_message
         self
       end
     else
