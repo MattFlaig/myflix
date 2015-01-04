@@ -11,4 +11,11 @@ class Video < ActiveRecord::Base
     return [] if search_term.blank?
     where("title LIKE ?", "%#{search_term}%")
   end
+
+  def average_rating
+    clean_reviews = reviews.reload.where('rating IS NOT NULL')
+    return nil if clean_reviews.empty?
+    ratings = clean_reviews.map(&:rating)
+    (ratings.sum.to_f / clean_reviews.size.to_f).round(1)
+  end
 end
