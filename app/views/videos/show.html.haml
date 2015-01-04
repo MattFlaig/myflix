@@ -8,8 +8,9 @@
           %h3= @video.title
           = @video.show_average_rating
         %p= @video.description
-        .actions
+        %p
           %a.btn.btn-primary(href="#{@video.video_url}") Watch Now
+        %p
           %a= link_to "+ My Queue", queue_items_path(video_id: @video.id), method: :post, class: 'btn' unless current_user.queued_video?(@video)
 
 %section.reviews.container
