@@ -19,13 +19,12 @@ gem 'bootstrap-sass', '~> 2.2.1.0'
 gem 'bootstrap_form'
 gem 'sass-rails', '~> 4.0.2'
 gem 'font-awesome-rails'
-
+gem 'pry'
+gem 'pry-nav'
 
 
 group :development do
   gem 'sqlite3'
-  gem 'pry'
-  gem 'pry-nav'
   gem 'thin'
   gem 'better_errors'
   gem 'binding_of_caller'
