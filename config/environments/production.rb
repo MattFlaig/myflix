@@ -16,7 +16,7 @@ Myflix::Application.configure do
 
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: 'http://quiet-chamber-2363.herokuapp.com/' }
+  config.action_mailer.default_url_options = { host: 'http://quiet-chamber-2363-staging.herokuapp.com/' }
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
@@ -24,7 +24,7 @@ Myflix::Application.configure do
     :address        => ENV['MAILGUN_SMTP_SERVER'],
     :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
     :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-    :domain         =>  'http://quiet-chamber-2363.herokuapp.com/',
+    :domain         =>  'http://quiet-chamber-2363-staging.herokuapp.com/',
     :authentication => :plain,
   }
 
