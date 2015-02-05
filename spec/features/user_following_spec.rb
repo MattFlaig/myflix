@@ -20,6 +20,6 @@ feature 'User following' do
   end
 
   def unfollow(user)
-  	find("a[data-method='delete']").click
+    find("a[data-method='delete']").click
   end
 end

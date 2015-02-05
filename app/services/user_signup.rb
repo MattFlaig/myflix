@@ -1,9 +1,9 @@
 class UserSignup
   attr_reader :error_message
 
-	def initialize(user)
+  def initialize(user)
     @user = user
-	end
+  end
 
   def sign_up(stripe_token, invitation_token)
     if @user.valid?
@@ -24,7 +24,7 @@ class UserSignup
         self
       end
     else
-    	@status = :failed
+      @status = :failed
       @error_message = "Invalid user information. Please check the errors below."
       self
     end
